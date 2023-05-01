@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Mirrativ CM
 // @namespace    mirrativ_CM
-// @version      1
+// @version      1.0
 // @description  Adds an "Auto Stream" button to the Mirrativ broadcast page and types "でいりー" in the input field when clicked.
-// @author       Your Name
+// @author       suke
 // @match        https://www.mirrativ.com/broadcast/*
 // @exclude      https://www.mirrativ.com/broadcast/history
 // @exclude      https://www.mirrativ.com/broadcast/prepare
