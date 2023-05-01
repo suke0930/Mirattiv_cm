@@ -208,7 +208,7 @@
                                 let pathname = path + "p._commentUserName_nzdco_11"
                                 let pathtext = path + "p._commentText_nzdco_19"
                                 let giftpath = path + "p._commentText_nzdco_19>div"//ギフト証明パス
-                                let giftgivename = path + "p._commentText_nzdco_19>div.a>span"//ギフトをくれた人
+                                let giftgivename = path + "p._commentText_nzdco_19>div>a>span"//ギフトをくれた人
                                 let giftname = path + "p._commentText_nzdco_19>div>a>span._accent_1m6ac_45"//ギフトの名前
                                 let giftmany = path + "p._commentText_nzdco_19>div>a>span>span"//ギフトの数
                                 /**
@@ -231,6 +231,7 @@
                                     // 棒読みちゃんにコメントを送信する
 
                                     // console.log(cmnStr)
+
                                     let text1 = document.querySelector(pathname).textContent//名前
                                     let text2 = document.querySelector(pathtext).textContent//本文
                                     console.log(text1 + "さん:" + text2)
