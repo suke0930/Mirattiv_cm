@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mirrativ CM
 // @namespace    mirrativ_CM
-// @version      1.0
+// @version      1.1
 // @description  Adds an "Auto Stream" button to the Mirrativ broadcast page and types "でいりー" in the input field when clicked.
 // @author       suke
 // @match        https://www.mirrativ.com/broadcast/*
@@ -207,10 +207,10 @@
 
                                 let pathname = path + "p._commentUserName_nzdco_11"
                                 let pathtext = path + "p._commentText_nzdco_19"
-                                let giftpath = path + "p._commentText_nzdco_19>div._commentGift_1m6ac_3._back0_1m6ac_13"//ギフト証明パス
-                                let giftgivename = path + "p._commentText_nzdco_19>div._commentGift_1m6ac_3._back0_1m6ac_13>a>span"//ギフトをくれた人
-                                let giftname = path + "p._commentText_nzdco_19>div._commentGift_1m6ac_3._back0_1m6ac_13>a>span._accent_1m6ac_45"//ギフトの名前
-                                let giftmany = path + "p._commentText_nzdco_19>div._commentGift_1m6ac_3._back0_1m6ac_13>a>span>span"//ギフトの数
+                                let giftpath = path + "p._commentText_nzdco_19>div"//ギフト証明パス
+                                let giftgivename = path + "p._commentText_nzdco_19>div.a>span"//ギフトをくれた人
+                                let giftname = path + "p._commentText_nzdco_19>div>a>span._accent_1m6ac_45"//ギフトの名前
+                                let giftmany = path + "p._commentText_nzdco_19>div>a>span>span"//ギフトの数
                                 /**
                                  * @param {string} pathname コメントをくれた人の名前
                                  * @param {string} pathtext コメントの内容
