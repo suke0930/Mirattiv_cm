@@ -7,6 +7,7 @@
 // @match        https://www.mirrativ.com/broadcast/*
 // @exclude      https://www.mirrativ.com/broadcast/history
 // @exclude      https://www.mirrativ.com/broadcast/prepare
+// @require      https://raw.githubusercontent.com/suke0930/Mirattiv_cm/main/src/yomiage.mjs
 // @grant        none
 // ==/UserScript==
 
