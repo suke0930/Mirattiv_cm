@@ -332,7 +332,7 @@
                 comment(true)
             }
 
-        }, 7000);
+        }, 3000);
     }
 
     comment(true);
