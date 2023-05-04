@@ -82,13 +82,15 @@
 
                                     if (pathtext === 'さんにフォローされました') {
                                         //ここにフォロー時の処理をなんとか書く
+                                        console.log(text1 + "さんにフォローされました！")
+                                        let bouyomiChanClient = new BouyomiChanClient();
+                                        bouyomiChanClient.talk(text1 + "さんがフォローしてくれました！ありがとねぇぇぇぇぇぇぇｌ");
+                                        //ここにobsとの連携を指せるコードを書く
 
                                     } else {
                                         console.log(text1 + "さん:" + text2)
                                         let bouyomiChanClient = new BouyomiChanClient();
                                         bouyomiChanClient.talk(text1 + "さん:" + text2);
-
-
                                     }
 
 
