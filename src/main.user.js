@@ -49,55 +49,21 @@
                                 let path = "#" + node.id + ">div.m-user-comment>" //ここまでは共通
 
                                 //_commentGift_1m6ac_3 _back0_1m6ac_13
-
-                                let pathname = path + "p._commentUserName_nzdco_11"
-                                let pathtext = path + "p._commentText_nzdco_19"
-                                let giftpath = path + "p._commentText_nzdco_19>div"//ギフト証明パス
-                                let giftgivename = path + "p._commentText_nzdco_19>div>a>span"//ギフトをくれた人
-                                let giftname = path + "p._commentText_nzdco_19>div>a>span._accent_1m6ac_45"//ギフトの名前
-                                let giftmany = path + "p._commentText_nzdco_19>div>a>span>span"//ギフトの数
                                 /**
-                                 * @param {string} pathname コメントをくれた人の名前
-                                 * @param {string} pathtext コメントの内容
-                                 * @param {string} giftpath ギフトかコメントか判断するフラグ
-                                 * @param {string} giftgivename ギフトをくれた人の名前
-                                 * @param {string} giftname ギフトの種類。名前
-                                 * @param {string} giftmany ギフトの数.
-                                 */
+                                                       * @param {string} pathname コメントをくれた人の名前
+                                                       * @param {string} pathtext コメントの内容
+                                                       * @param {string} giftpath ギフトかコメントか判断するフラグ
+                                                       * @param {string} giftgivename ギフトをくれた人の名前
+                                                       * @param {string} giftname ギフトの種類。名前
+                                                       * @param {string} giftmany ギフトの数.
+                                                       */
+                                try {
 
 
-
-
-
-
-                                if (document.querySelector(pathname) !== null) {//pathnameがほんとに存在していた場合
-
-
-                                    // 棒読みちゃんにコメントを送信する
-
-                                    // console.log(cmnStr)
-
-                                    let text1 = document.querySelector(pathname).textContent//名前
-                                    let text2 = document.querySelector(pathtext).textContent//本文
-
-                                    if (pathtext === 'さんにフォローされました') {
-                                        //ここにフォロー時の処理をなんとか書く
-                                        console.log(text1 + "さんにフォローされました！")
-                                        let bouyomiChanClient = new BouyomiChanClient();
-                                        bouyomiChanClient.talk(text1 + "さんがフォローしてくれました！ありがとねぇぇぇぇぇぇぇｌ");
-                                        //ここにobsとの連携を指せるコードを書く
-
-                                    } else {
-                                        console.log(text1 + "さん:" + text2)
-                                        let bouyomiChanClient = new BouyomiChanClient();
-                                        bouyomiChanClient.talk(text1 + "さん:" + text2);
-                                    }
-
-
-
-                                }
-
-                                if (document.querySelector(giftpath) !== null) {//ギフトの場合
+                                    const giftgivename = path + "p._commentText_nzdco_19>div>a>span"//ギフトをくれた人
+                                    const giftname = path + "p._commentText_nzdco_19>div>a>span._accent_1m6ac_45"//ギフトの名前
+                                    const giftmany = path + "p._commentText_nzdco_19>div>a>span>span"//ギフトの数
+                                    const giftpath = path + "p._commentText_nzdco_19>div"//ギフト証明パス
                                     console.log(document.querySelector(giftpath))
                                     // console.log(text1 + "さん:" + text2)
                                     // _commentGift_1m6ac_3 _back0_1m6ac_13
@@ -115,13 +81,25 @@
                                      */
 
 
-                                    if (fun !== 1) {
+                                    if (fun !== 1) {//ギフト処理
 
+                                        //   console.log("PATHってなぁに？")
+
+                                        //       const pathname2 = document.querySelector(pathname).textContent
+                                        //        const pathtext2 = document.querySelector(pathtext).textContent
+                                        const giftpath2 = document.querySelector(giftpath).textContent
+                                        const giftgivename2 = document.querySelector(giftgivename).textContent
+                                        const giftname2 = document.querySelector(giftname).textContent
+                                        const giftmany2 = document.querySelector(giftmany).textContent
+                                        console.log("あんでぃふぁいんど？")
+                                        console.log(giftgivename2)
                                         let text3 = document.querySelector(giftgivename).textContent + document.querySelector(giftmany).textContent + document.querySelector(giftname).textContent + "をぶん投げました。" + "ありがとね！";
                                         console.log(text3)
                                         let bouyomiChanClient = new BouyomiChanClient();
                                         bouyomiChanClient.talk(text3);
+                                        sendservergift(giftpath2, giftgivename2, giftname2, giftmany2);
                                     }
+
                                     if (fun === 1) {//おふざけもーど
                                         console.log("おふざけ")
                                         //const looperman = getRandomNumber(1, 10)
@@ -147,6 +125,60 @@
                                         let bouyomiChanClient = new BouyomiChanClient();
                                         bouyomiChanClient.talk(text4);
                                     }
+
+
+
+
+                                } catch (error) {
+                                    console.log("エラーだよ！")
+                                    console.log(error)
+                                    const pathname = path + "p._commentUserName_nzdco_11"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    // 棒読みちゃんにコメントを送信する
+
+                                    // console.log(cmnStr)
+
+                                    const pathtext = path + "p._commentText_nzdco_19"
+                                    let text1 = document.querySelector(pathname).textContent//名前
+                                    let text2 = document.querySelector(pathtext).textContent//本文
+
+                                    if (pathtext === 'さんにフォローされました') {
+                                        //ここにフォロー時の処理をなんとか書く
+
+
+
+                                        console.log(text1 + "さんにフォローされました！")
+                                        let bouyomiChanClient = new BouyomiChanClient();
+                                        bouyomiChanClient.talk(text1 + "さんがフォローしてくれました！ありがとねぇぇぇぇぇぇぇｌ");
+                                        //ここにobsとの連携を指せるコードを書く
+
+                                    } else {
+
+                                        console.log(text1 + "さん:" + text2)
+                                        let bouyomiChanClient = new BouyomiChanClient();
+                                        bouyomiChanClient.talk(text1 + "さん:" + text2);
+                                    }
+
+
+
+
+
 
 
                                 }
@@ -191,5 +223,30 @@
         }, 3000);
     }
 
+    /**
+ * @param {string} pathname コメントをくれた人の名前
+ * @param {string} pathtext コメントの内容
+ * @param {string} giftpath ギフトかコメントか判断するフラグ
+ * @param {string} giftgivename ギフトをくれた人の名前
+ * @param {string} giftname ギフトの種類。名前
+ * @param {string} giftmany ギフトの数.
+ */
+
+
+
+    async function sendservergift(giftpath, giftgivename, giftname, giftmany) {
+
+        const SENDDATA = JSON.stringify({
+            status: "commentlisner",
+            effect: "gift",
+            value: giftmany,
+            data: giftname
+        });
+        const ws = new WebSocket('ws://localhost:8877');
+        ws.addEventListener('open', function (event) {
+            ws.send(SENDDATA);//鯖にデータ転送
+        });
+
+    }
     comment(true);
 })();
