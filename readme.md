@@ -1,3 +1,4 @@
+<img src="http://counter.seku.su/cmoe?name=sukeMIRACM&theme=r34" alt="sukeMIRACM" /><br>
 # このツールについて
 ミラティブのコメントを棒読みちゃんに自動で送信するツールです。
 棒読みちゃんにwebsocket-pluginが必要です
