@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mirrativ CM
 // @namespace    mirrativ_CM
-// @version      2.0
+// @version      2.1
 // @description  Adds an "Auto Stream" button to the Mirrativ broadcast page and types "でいりー" in the input field when clicked.
 // @author       suke
 // @match        https://www.mirrativ.com/broadcast/*
@@ -220,7 +220,7 @@
                 comment(true)
             }
 
-        }, 3000);
+        }, 6000);
     }
 
     /**
