@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mirrativ CM
 // @namespace    mirrativ_CM
-// @version      2.3
+// @version      2.4
 // @description  Adds an "Auto Stream" button to the Mirrativ broadcast page and types "でいりー" in the input field when clicked.
 // @author       suke
 // @match        https://www.mirrativ.com/broadcast/*
@@ -130,49 +130,30 @@
 
 
                                 } catch (error) {
-                                    console.log("エラーだよ！")
-                                    console.log(error)
+                                    //console.log("エラーだよ！")
+                                    //console.log(error)
                                     const pathname = path + "p._commentUserName_nzdco_11"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     // 棒読みちゃんにコメントを送信する
-
                                     // console.log(cmnStr)
 
                                     const pathtext = path + "p._commentText_nzdco_19"
-                                    let text1 = document.querySelector(pathname).textContent//名前
+                                    let name = document.querySelector(pathname).textContent//名前
                                     let text2 = document.querySelector(pathtext).textContent//本文
 
                                     if (pathtext === 'さんにフォローされました') {
                                         //ここにフォロー時の処理をなんとか書く
-
-
-
-                                        console.log(text1 + "さんにフォローされました！")
+                                        sendserverforrow();
+                                        console.log(name + "さんにフォローされました！")
                                         let bouyomiChanClient = new BouyomiChanClient();
-                                        bouyomiChanClient.talk(text1 + "さんがフォローしてくれました！ありがとねぇぇぇぇぇぇぇｌ");
+                                        sendserverforrow(name)
+                                        bouyomiChanClient.talk(name + "さんがフォローしてくれました！ありがとねぇぇぇぇぇぇぇｌ");
                                         //ここにobsとの連携を指せるコードを書く
 
                                     } else {
 
-                                        console.log(text1 + "さん:" + text2)
+                                        console.log(name + "さん:" + text2)
                                         let bouyomiChanClient = new BouyomiChanClient();
-                                        bouyomiChanClient.talk(text1 + "さん:" + text2);
+                                        bouyomiChanClient.talk(name + "さん:" + text2);
                                     }
 
 
@@ -232,21 +213,58 @@
  * @param {string} giftmany ギフトの数.
  */
 
+    /**　フォロー時の通知をサーバーに送る。
+     * 
+     */
+    async function sendserverforrow(forrowname) {
+        if (forrowname.length >= 30) {
+            const SENDDATA = JSON.stringify({
+                status: "commentlisner",
+                effect: "forrow",
+                data: "any",
+                name: "名前長過ぎ"
+            });
+            sendserver(SENDDATA)
+        } else {
+            const SENDDATA = JSON.stringify({
+                status: "commentlisner",
+                effect: "forrow",
+                data: "any",
+                name: forrowname
+            });
+            sendserver(SENDDATA)
+        }
 
 
+
+    };
+
+    /**
+     * サーバーに送られたギフトの内容を送信する
+     * @param {number}giftmany 送られたギフトの数
+     * @param {string}giftname 
+     */
     async function sendservergift(giftpath, giftgivename, giftname, giftmany) {
 
         const SENDDATA = JSON.stringify({
             status: "commentlisner",
             effect: "gift",
             value: giftmany,
-            data: giftname
+            data: giftname,
+            name: giftgivename
         });
+        sendserver(SENDDATA)
+
+    }
+    /**実際にwsでサーバーにデータを送信する
+     * @param {object} SENDDATA 鯖に送るデータ
+     */
+    function sendserver(SENDDATA) {
         const ws = new WebSocket('ws://localhost:8877');
         ws.addEventListener('open', function (event) {
             ws.send(SENDDATA);//鯖にデータ転送
+            ws.close();
         });
-
     }
     comment(true);
 })();
